@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Task 1 - Responsive Layout</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+    transition: 0.3s;
+}
+
+header {
+    background: #183153;
+    color: white;
+    padding: 24px;
+    text-align: center;
+}
+
+nav {
+    background: #2f80ed;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 20px;
+}
+
+main,
+aside {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.feature {
+    background: #2f80ed;
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.feature:hover {
+    background: #1c63c7;
+}
+
+footer {
+    background: #183153;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 18px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .container {
+        margin: 14px auto;
+        padding: 0 12px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    main,
+    aside {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Responsive Web Design</h1>
+    <p>A layout that adapts to desktop, tablet, and mobile screens.</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+
+<main>
+
+<h2>Main Content</h2>
+
+<p>This section uses CSS Grid and media queries to change its layout depending on screen width.</p>
+
+<div class="features">
+    <button class="feature" onclick="setView('desktop')">🖥 Desktop</button>
+    <button class="feature" onclick="setView('tablet')">📱 Tablet</button>
+    <button class="feature" onclick="setView('mobile')">📲 Mobile</button>
+</div>
+
+</main>
+
+<aside>
+<h2>Sidebar</h2>
+<p>The sidebar moves under the main content on smaller screens.</p>
+</aside>
+
+</div>
+
+<footer>
+<p>Robert Jaireh D.C. Lazaro - TC05</p>
+<p>&copy; 2026 Responsive Layout Demo</p> 
+</footer>
+
+<script>
+function setView(device){
+
+    const body = document.body;
+    const container = document.querySelector(".container");
+    const features = document.querySelector(".features");
+    const nav = document.querySelector("nav");
+
+    // Reset
+    body.style.maxWidth = "";
+    body.style.margin = "";
+
+    container.style.gridTemplateColumns = "";
+    features.style.gridTemplateColumns = "";
+
+    nav.style.flexDirection = "row";
+    nav.style.alignItems = "center";
+
+    if(device === "desktop"){
+        body.style.maxWidth = "1200px";
+        body.style.margin = "0 auto";
+        container.style.gridTemplateColumns = "2fr 1fr";
+        features.style.gridTemplateColumns = "repeat(3,1fr)";
+    }
+
+    if(device === "tablet"){
+        body.style.maxWidth = "768px";
+        body.style.margin = "0 auto";
+        container.style.gridTemplateColumns = "1fr";
+        features.style.gridTemplateColumns = "repeat(2,1fr)";
+    }
+
+    if(device === "mobile"){
+        body.style.maxWidth = "430px";
+        body.style.margin = "0 auto";
+        container.style.gridTemplateColumns = "1fr";
+        features.style.gridTemplateColumns = "1fr";
+
+        nav.style.flexDirection = "column";
+        nav.style.alignItems = "center";
+    }
+}
+</script>
+
+</body>
+</html>
